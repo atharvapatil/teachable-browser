@@ -1,0 +1,23 @@
+html, body {
+  margin: 0px;
+  padding: 24px;
+  display: block;
+  background-color: black;
+  font-family: 'Roboto Mono', monospace;
+}
+
+h1 {
+  color: white;
+}
+
+#results{
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    color: white;
+    padding: 12px;
+    boder: 1px solid #FF0000
+    text-align: right;
+    font-size: 24px;
+    transition: '0.3s'
+}
