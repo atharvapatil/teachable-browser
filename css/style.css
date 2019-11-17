@@ -4,6 +4,7 @@ html, body {
   display: block;
   background-color: black;
   font-family: 'Roboto Mono', monospace;
+  color: white;
 }
 
 h1 {
