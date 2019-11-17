@@ -1,24 +1,19 @@
 html, body {
   margin: 0px;
-  padding: 24px;
+  padding: 8px;
   display: block;
   background-color: black;
   font-family: 'Roboto Mono', monospace;
   color: white;
+
 }
 
 h1 {
   color: white;
+  margin: 0px;
 }
 
-#results{
-    position: absolute;
-    top: 0px;
-    right: 12px;
-    color: white;
-    padding: 12px;
-    boder: 1px solid #FF0000
-    text-align: right;
-    font-size: 24px;
-    transition: '0.3s'
+.embed-video{
+  margin-left: auto;
+  margin-right: auto;
 }
