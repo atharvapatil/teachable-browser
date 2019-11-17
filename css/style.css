@@ -1,11 +1,10 @@
 html, body {
   margin: 0px;
-  padding: 8px;
+  padding: 0px;
   display: block;
-  background-color: black;
+  background-color: #080809;
   font-family: 'Roboto Mono', monospace;
   color: white;
-
 }
 
 h1 {
@@ -13,7 +12,61 @@ h1 {
   margin: 0px;
 }
 
-.embed-video{
+/* .embed-video{
   margin-left: auto;
   margin-right: auto;
+} */
+
+/* .inputs{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+#youtube-url{
+  width: 90vw;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6)
+}
+
+#submit-button{
+  width: 10vw;
+} */
+
+.inputs{
+  display: flex;
+  margin: 0px;
+  padding: 16px;
+}
+
+button {
+  background-color: tomato;
+  /* width: 8vw; */
+  width: 6%;
+  cursor: pointer;
+  border-radius: 0px 2px 2px 0px;
+  border: none;
+}
+
+input {
+  /* width: 92vw; */
+  width: 94%;
+  height: 64px;
+  font-size: 20px;
+  padding: 0 16px;
+  background-color: inherit;
+  color: inherit;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #1F1F1F;
+}
+
+input:focus{
+  /* border: 1px solid red; */
+  border: none;
+  background-color: #1F1F1F;
 }

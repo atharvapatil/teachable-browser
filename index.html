@@ -8,20 +8,22 @@
   <title>Teachable Browser</title>
   <meta name="description" content="Teachable Browser">
   <meta name="author" content="Atharva Patil">
-
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
   <script src="js/teachable-machine.js"></script>
-  <p><span id="text">The is a paragraph</span></p>
-
- <input type="text" name="fname" id="youtube-url">
-  <input type="submit" value="Submit" onclick="stringTest()">
-
+  <!-- <p><span id="text">The is a paragraph</span></p> -->
+  <div class="inputs">
+    <input type="text" name="fname" value="Enter youtube link here" id="youtube-url">
+    <button id="search_button" onclick="handleVideoUpdate()">
+      <!-- <img src="https://cdn1.iconfinder.com/data/icons/TWG_Retina_Icons/24/magnifier.png" /> -->
+      <img src="/img/search-icon.svg" width="32px" height="inherit" />
+    </button>
+  </div>
   <div class="embed-video">
-    <iframe width="800" height="540" id="embed-video" src="https://www.youtube.com/embed/_t0ZBAk72K8" margin-right="auto" margin-left="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="800" height="540" margin-right="auto" margin-left="auto" id="embed-video" src="https://www.youtube.com/embed/_t0ZBAk72K8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </body>
 
