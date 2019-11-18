@@ -8,6 +8,12 @@
   <title>Teachable Browser</title>
   <meta name="description" content="Teachable Browser">
   <meta name="author" content="Atharva Patil">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script> -->
+  <!-- more documentation at https://github.com/googlecreativelab/teachablemachine-libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -25,6 +31,8 @@
   <div class="embed-video">
     <iframe width="800" height="540" margin-right="auto" margin-left="auto" id="embed-video" src="https://www.youtube.com/embed/_t0ZBAk72K8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
+  <div><canvas id='canvas'></canvas></div>
+  <div id='label-container'></div>
 </body>
 
 </html>

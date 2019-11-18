@@ -1,103 +1,77 @@
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.1.2/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.3.8/dist/speech-commands.min.js"></script>
-
+<div>Teachable Machine Pose Model</div>
+<button type='button' onclick='init()'>Start</button>
+<div><canvas id='canvas'></canvas></div>
+<div id='label-container'></div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 <script type="text/javascript">
-    // more documentation available at
-    // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
-    // the json file (model topology) has a reference to the bin file (model weights)
-    const checkpointURL = 'https://storage.googleapis.com/teachable-machine-pubilshed-models/df7542cb-b60e-4187-bfcd-61efdecb9467/model.json';
-    // the metatadata json file contains the text labels of your model and additional information
-    const metadataURL = 'https://storage.googleapis.com/teachable-machine-pubilshed-models/df7542cb-b60e-4187-bfcd-61efdecb9467/metadata.json';
+    // the link to your model provided by Teachable Machine export panel
+    const URL = 'https://teachablemachine.withgoogle.com/models/vlH59CQ_/';
+    let model, webcam, ctx, labelContainer, maxPredictions;
 
-    const recognizer = speechCommands.create(
-        'BROWSER_FFT',
-        undefined,
-        checkpointURL,
-        metadataURL);
+    async function init() {
+        const modelURL = URL + 'model.json';
+        const metadataURL = URL + 'metadata.json';
 
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // Note: the pose library adds 'tmPose' object to your window (window.tmPose)
+        model = await tmPose.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
 
-    async function setup() {
-        // Make sure that the underlying model and metadata are loaded via HTTPS
-        // requests.
-        await recognizer.ensureModelLoaded();
+        // Convenience function to setup a webcam
+        const size = 200;
+        const flip = true; // whether to flip the webcam
+        webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
 
-        // See the array of words that the recognizer is trained to recognize.
-        console.log(recognizer.wordLabels());
-
-        // listen() takes two arguments:
-        // 1. A callback function that is invoked anytime a word is recognized.
-        // 2. A configuration object with adjustable fields such a
-        //    - includeSpectrogram
-        //    - probabilityThreshold
-        //    - includeEmbedding
-        recognizer.listen(result => {
-        // - result.scores contains the probability scores that correspond to
-        //   recognizer.wordLabels().
-        // - result.spectrogram contains the spectrogram of the recognized word.
-            console.log(result);
-        }, {
-            includeSpectrogram: true,
-            probabilityThreshold: 0.75,
-            invokeCallbackOnNoiseAndUnknown: true,
-            overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
-        });
-
-        // Stop the recognition in 10 seconds.
-        // setTimeout(() => recognizer.stopListening(), 10e3);
+        // append/get elements to the DOM
+        const canvas = document.getElementById('canvas');
+        canvas.width = size; canvas.height = size;
+        ctx = canvas.getContext('2d');
+        labelContainer = document.getElementById('label-container');
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement('div'));
+        }
     }
 
-    setup();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.1.2/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.3.8/dist/speech-commands.min.js"></script>
-
-<script type="text/javascript">
-    // more documentation available at
-    // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
-
-    // the json file (model topology) has a reference to the bin file (model weights)
-    const checkpointURL = 'https://storage.googleapis.com/teachable-machine-pubilshed-models/f54c5740-c672-4e7c-aac8-a68007189ead/model.json';
-    // the metatadata json file contains the text labels of your model and additional information
-    const metadataURL = 'https://storage.googleapis.com/teachable-machine-pubilshed-models/f54c5740-c672-4e7c-aac8-a68007189ead/metadata.json';
-
-    const recognizer = speechCommands.create(
-        'BROWSER_FFT',
-        undefined,
-        checkpointURL,
-        metadataURL);
-
-
-    async function setup() {
-        // Make sure that the underlying model and metadata are loaded via HTTPS
-        // requests.
-        await recognizer.ensureModelLoaded();
-
-        // See the array of words that the recognizer is trained to recognize.
-        console.log(recognizer.wordLabels());
-
-        // listen() takes two arguments:
-        // 1. A callback function that is invoked anytime a word is recognized.
-        // 2. A configuration object with adjustable fields such a
-        //    - includeSpectrogram
-        //    - probabilityThreshold
-        //    - includeEmbedding
-        recognizer.listen(result => {
-        // - result.scores contains the probability scores that correspond to
-        //   recognizer.wordLabels().
-        // - result.spectrogram contains the spectrogram of the recognized word.
-            console.log(result);
-        }, {
-            includeSpectrogram: true,
-            probabilityThreshold: 0.75,
-            invokeCallbackOnNoiseAndUnknown: true,
-            overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
-        });
-
-        // Stop the recognition in 10 seconds.
-        // setTimeout(() => recognizer.stopListening(), 10e3);
+    async function loop(timestamp) {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
     }
 
-    setup();
+    async function predict() {
+        // Prediction #1: run input through posenet
+        // estimatePose can take in an image, video or canvas html element
+        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+        // Prediction 2: run input through teachable machine classification model
+        const prediction = await model.predict(posenetOutput);
+
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+
+        // finally draw the poses
+        drawPose(pose);
+    }
+
+    function drawPose(pose) {
+        if (webcam.canvas) {
+            ctx.drawImage(webcam.canvas, 0, 0);
+            // draw the keypoints and skeleton
+            if (pose) {
+                const minPartConfidence = 0.5;
+                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+            }
+        }
+    }
 </script>

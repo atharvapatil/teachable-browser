@@ -3,10 +3,99 @@ console.log("javaScript file initiated");
 // const EMBED_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
 // const VIDEO_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 
-window.addEventListener('load', () => {
-  document.getElementById('text').textContent = 'What does the fox say?';
-  // document.body.style.filter = 'blur(1px)';
-});
+let URL = 'https://storage.googleapis.com/tm-models/QDvGMpQt/';
+
+// const size = 200;
+// const flip = true;
+let model, webcam, ctx, labelContainer, maxPredictions;
+
+window.addEventListener('load', init);
+
+
+async function init() {
+    const modelURL = URL + 'model.json';
+    const metadataURL = URL + 'metadata.json';
+
+    // load the model and metadata
+    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+    // Note: the pose library adds 'tmPose' object to your window (window.tmPose)
+    model = await tmPose.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    // Convenience function to setup a webcam
+    const size = 200;
+    const flip = true; // whether to flip the webcam
+    webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+    await webcam.setup(); // request access to the webcam
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    // append/get elements to the DOM
+    const canvas = document.getElementById('canvas');
+    canvas.width = size; canvas.height = size;
+    ctx = canvas.getContext('2d');
+    labelContainer = document.getElementById('label-container');
+    for (let i = 0; i < maxPredictions; i++) { // and class labels
+        labelContainer.appendChild(document.createElement('div'));
+    }
+  }
+
+// async function setup() {
+//   myCanvas = createCanvas(size, size);
+//   ctx = myCanvas.elt.getContext("2d");
+//   // Call the load function, wait until it finishes loading
+//   await load();
+//   await loadWebcam();
+// }
+
+async function loop(timestamp) {
+    webcam.update(); // update the webcam frame
+    await predict();
+    window.requestAnimationFrame(loop);
+}
+
+async function predict() {
+    const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+    // Prediction 2: run input through teachable machine classification model
+    const prediction = await model.predict(posenetOutput);
+
+    for (let i = 0; i < 3; i++) {
+        const classPrediction = prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+        labelContainer.childNodes[i].innerHTML = classPrediction;
+    }
+
+    // console.log(prediction);
+
+    var array = [prediction[0].probability, prediction[1].probability, prediction[2].probability];
+    array.sort();
+    // console.log(array);
+
+    let topResult = prediction[0].className;
+
+    if (topResult === 'neutral') {
+      removeBlur();
+    } else if (topResult === 'left' || topResult === 'right') {
+      blurScreen();
+    }
+
+
+
+    // finally draw the poses
+    drawPose(pose);
+}
+
+function drawPose(pose) {
+    if (webcam.canvas) {
+        ctx.drawImage(webcam.canvas, 0, 0);
+        // draw the keypoints and skeleton
+        if (pose) {
+            const minPartConfidence = 0.5;
+            tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+            tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+        }
+    }
+}
+
 
 function handleVideoUpdate(){
   //declaring common constant params
@@ -32,11 +121,12 @@ function handleVideoUpdate(){
   document.getElementById('embed-video').src = newURL;
 
 }
-//
-// function testFunction(){
-//   const inputValue = document.getElementById('youtube-url').value;
-//   document.getElementById('text').textContent = inputValue;
-//   console.log(inputValue);
-//
-//   return inputValue;
-// }
+
+function blurScreen() {
+  document.body.style.filter = 'blur(18px)';
+  document.body.style.transition = '1.2s';
+}
+
+function removeBlur() {
+  document.body.style.filter = 'blur(0px)';
+}
