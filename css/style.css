@@ -63,7 +63,6 @@ input {
   padding: 0 16px;
   background-color: inherit;
   color: inherit;
-  text-align: center;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: #1F1F1F;
@@ -76,8 +75,11 @@ input:focus{
 }
 
 .tensorflow{
-  display: block;
+  /* display: block;
   padding-top: 40px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+  position: fixed;
+  top: 100px;
+  right: 16px;
 }
