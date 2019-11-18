@@ -5,6 +5,8 @@ html, body {
   background-color: #080809;
   font-family: 'Roboto Mono', monospace;
   color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
@@ -12,10 +14,12 @@ h1 {
   margin: 0px;
 }
 
-/* .embed-video{
+.embed-video{
+  display: block;
   margin-left: auto;
   margin-right: auto;
-} */
+  padding-left: 20px;
+}
 
 /* .inputs{
   display: inline-block;
@@ -69,4 +73,11 @@ input:focus{
   /* border: 1px solid red; */
   border: none;
   background-color: #1F1F1F;
+}
+
+.tensorflow{
+  display: block;
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
