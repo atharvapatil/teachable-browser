@@ -14,41 +14,21 @@ h1 {
   margin: 0px;
 }
 
-.embed-video{
-  display: block;
+.embed-video {
+  display: none;
   margin-left: auto;
   margin-right: auto;
   padding-left: 16px;
 }
 
-/* .inputs{
-  display: inline-block;
-  margin: 0px;
-  padding: 0px;
-
-}
-
-#youtube-url{
-  width: 90vw;
-  background-color: inherit;
-  color: inherit;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6)
-}
-
-#submit-button{
-  width: 10vw;
-} */
-
-.inputs{
-  display: flex;
+.inputs {
+  display: none;
   margin: 0px;
   padding: 16px;
 }
 
 button {
   background-color: tomato;
-  /* width: 8vw; */
   width: 6%;
   cursor: pointer;
   border-radius: 0px 2px 2px 0px;
@@ -56,7 +36,6 @@ button {
 }
 
 input {
-  /* width: 92vw; */
   width: 94%;
   height: 64px;
   font-size: 20px;
@@ -69,18 +48,24 @@ input {
   font-family: 'Barlow', sans-serif;
 }
 
-input:focus{
+input:focus {
   /* border: 1px solid red; */
   border: none;
   background-color: #1F1F1F;
 }
 
-.tensorflow{
-  /* display: block;
-  padding-top: 40px;
-  margin-left: auto;
-  margin-right: auto; */
+.tensorflow {
   position: fixed;
   top: 100px;
   right: 16px;
+}
+
+.loading {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 16px;
+  text-align: center;
+  font-size: 32px;
+  padding-top: 80px;
 }

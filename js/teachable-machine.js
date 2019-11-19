@@ -16,6 +16,11 @@ async function init() {
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
 
+  document.getElementById('tensorflow').style.display = 'none';
+  document.getElementById('embed-video').style.display = 'none';
+  document.getElementById('inputs').style.display = 'none';
+
+
   // load the model and metadata
   // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
   // Note: the pose library adds 'tmPose' object to your window (window.tmPose)
@@ -42,14 +47,6 @@ async function init() {
   }
 }
 
-// async function setup() {
-//   myCanvas = createCanvas(size, size);
-//   ctx = myCanvas.elt.getContext("2d");
-//   // Call the load function, wait until it finishes loading
-//   await load();
-//   await loadWebcam();
-// }
-
 async function loop(timestamp) {
   webcam.update(); // update the webcam frame
   await predict();
@@ -71,25 +68,24 @@ async function predict() {
 
   // console.log(prediction);
 
+  if (pose) {
+    document.getElementById('tensorflow').style.display = 'block';
+    document.getElementById('embed-video').style.display = 'block';
+    document.getElementById('inputs').style.display = 'flex';
+    document.getElementById('loading').style.display = 'none';
+  }
+
   let neutral_probablity = prediction[0].probability;
   let left_probablity = prediction[1].probability;
   let right_probablity = prediction[2].probability;
 
   let topResult = await largest(neutral_probablity, left_probablity, right_probablity);
 
-  // var array = [prediction[0].probability, prediction[1].probability, prediction[2].probability];
-  // array.sort();
-  // console.log(array);
-
-  // let topResult = prediction[0].className;
-
   if (topResult === 'neutral') {
     noBlur();
   } else if (topResult === 'left' || topResult === 'right') {
     blurScreen();
   }
-
-
 
   // finally draw the poses
   drawPose(pose);
@@ -129,7 +125,7 @@ function handleVideoUpdate() {
   // console.log(newURL);
 
   //updating the embedded iframes source
-  document.getElementById('embed-video').src = newURL;
+  document.getElementById('vid').src = newURL;
 
 }
 
