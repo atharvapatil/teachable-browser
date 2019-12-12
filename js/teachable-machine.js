@@ -18,11 +18,51 @@ function landingPageLoad() {
   document.getElementById('begin-tutorial').addEventListener('click', beginTutorial);
 }
 
-function beginTutorial(){
+function beginTutorial() {
   console.log("Tutorial begining");
 
   document.getElementById('intro-wrapper').style.display = 'none';
   document.getElementById('tutorial-wrapper').style.display = 'block';
+
+  // The video element on the page to display the webcam
+  var video = document.getElementById('thevideo');
+  let constraints = {
+    audio: false,
+    video: true
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+      // Attach to our video object
+      video.srcObject = stream;
+      // Wait for the stream to load enough to play
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
+    .catch(function(err) {
+      alert(err);
+    });
+
+  // Canvas element on the page
+  var thecanvas = document.getElementById('thecanvas');
+  var thecontext = thecanvas.getContext('2d');
+
+  var draw = function() {
+    // Draw the video onto the canvas
+    thecontext.drawImage(video, 0, 0, video.width, video.height);
+
+    var overlayImage = new Image();
+    overlayImage.src = "./img/tutorial/ideal-placement.png";
+
+    thecontext.drawImage(overlayImage, 0, 0);
+
+    // Draw again in 3 seconds
+    setTimeout(draw, 60);
+
+  };
+
+  draw();
+
 }
 
 
@@ -144,7 +184,7 @@ function handleVideoUpdate() {
 }
 
 function blurScreen() {
-  document.body.style.filter = 'blur(10px)';
+  document.body.style.filter = 'blur(18px)';
   document.body.style.transition = '1.2s';
 }
 
