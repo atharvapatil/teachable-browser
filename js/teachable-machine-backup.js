@@ -1,3 +1,4 @@
+console.log("javaScript file initiated");
 // Normal Youtube link & Embedded youtube url samples for reference
 // const EMBED_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
 // const VIDEO_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
@@ -8,22 +9,7 @@ let URL = 'https://storage.googleapis.com/tm-models/QDvGMpQt/';
 // const flip = true;
 let model, webcam, ctx, labelContainer, maxPredictions;
 
-// window.addEventListener('load', init);
-
-window.addEventListener('load', landingPageLoad);
-
-function landingPageLoad() {
-  console.log("Well let's begin");
-
-  document.getElementById('begin-tutorial').addEventListener('click', beginTutorial);
-}
-
-function beginTutorial(){
-  console.log("Tutorial begining");
-
-  document.getElementById('intro-wrapper').style.display = 'none';
-  document.getElementById('tutorial-wrapper').style.display = 'block';
-}
+window.addEventListener('load', init);
 
 
 async function init() {
