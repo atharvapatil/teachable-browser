@@ -272,6 +272,19 @@ input:focus {
   background-color: #1F1F1F;
 }
 
+.footer{
+  position: absolute;
+  bottom: 0px;
+  right:10px;
+  opacity: 0.7;
+}
+
+.footer a{
+  text-decoration: underline;
+  color: white;
+  letter-spacing: 0.03em;
+}
+
 #tutorial-wrapper {
   display: none;
 }
