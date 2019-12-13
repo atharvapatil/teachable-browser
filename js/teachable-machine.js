@@ -47,7 +47,7 @@ function videoElementPlay(){
     thecontext.drawImage(video, 0, 0, video.width, video.height);
 
     var overlayImage = new Image();
-    overlayImage.src = "./img/tutorial/ideal-placement.png";
+    overlayImage.src = "./img/intro/intro-4.png";
 
     thecontext.drawImage(overlayImage, 0, 0);
 
@@ -185,6 +185,8 @@ async function predict() {
     blurScreen();
   }
 
+  drawPose(pose);
+
 }
 
 function handleVideoUpdate() {
@@ -239,5 +241,17 @@ function largest(num1, num2, num3) {
     // console.log("right is greatest");
     return right
 
+  }
+}
+
+function drawPose(pose) {
+  if (webcam.canvas) {
+    ctx.drawImage(webcam.canvas, 0, 0);
+    // draw the keypoints and skeleton
+    if (pose) {
+      const minPartConfidence = 0.5;
+      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+    }
   }
 }
