@@ -48,27 +48,6 @@ html, body {
   grid-row-end: 3;
 }
 
-.item-2 {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-.item-3 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-.item-4 {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
 .intro-text h1 {
   font-family: 'Lora', serif;
   color: #3d5afe;
@@ -111,11 +90,187 @@ html, body {
   padding: 16px 24px 16px 24px;
   border-radius: 6px;
 }
+
+.tutorial-wrapper {
+  display: flex;
+  width: 100%;
+  /* flex-wrap: wrap-reverse; */
+}
+
+.tutorial-text {
+  display: block;
+  margin: 0px 16px 16px 48px;
+  width: 50%;
+  /* padding-right: 40px; */
+}
+
+.tutorial-text button {
+  margin-top: 40px;
+  background-color: #3d5afe;
+  color: white;
+  padding: 16px 16px 16px 16px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: 0.05s;
+  letter-spacing: 0.05em;
+}
+
+.tutorial-text button:hover {
+  transform: translate(0%, -10%);
+  background-color: #0026ca;
+  padding: 16px 24px 16px 24px;
+  border-radius: 6px;
+}
+
+.tutorial-text h1 {
+  font-family: 'Lora', serif;
+  color: #3d5afe;
+  font-size: 56px;
+  padding-top: 72px;
+  padding-bottom: 16px;
+  margin: 0px;
+}
+
+
 canvas {
   transform: scaleX(-1);
 }
 
+ul {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  line-height: 2.2;
+  list-style-type: disc;
+  margin: 0;
+  padding: 0;
+  padding-left: 4px;
+}
 
+sup{
+  font-size: 10px;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.tutorial-images {
+  display: grid;
+  margin: 0px 8px 16px 16px;
+  width: 40%;
+  grid-template-columns: repeat(2, 240px);
+  grid-template-rows: repeat(2, 240px);
+  grid-gap: 12px;
+  padding-top: 90px;
+}
+
+.tutorial-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+}
+
+.tut-1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.tut-2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.tut-3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.tut-4 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+
+.app-wrapper{
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+
+.tensorflow {
+  display: none;
+  position: fixed;
+  top: 100px;
+  right: 16px;
+}
+
+.loading {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 16px;
+  text-align: center;
+  font-size: 32px;
+  padding-top: 80px;
+}
+
+.embed-video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+}
+
+.inputs {
+  display: flex;
+  margin: 0px;
+  padding: 16px;
+}
+
+.inputs button {
+  background-color: tomato;
+  width: 6%;
+  cursor: pointer;
+  border-radius: 0px 2px 2px 0px;
+  border: none;
+}
+
+input {
+  width: 94%;
+  height: 64px;
+  font-size: 20px;
+  padding: 0 16px;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #1F1F1F;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+input:focus {
+  /* border: 1px solid red; */
+  border: none;
+  background-color: #1F1F1F;
+}
 
 #tutorial-wrapper {
   display: none;

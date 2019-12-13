@@ -4,11 +4,7 @@
 
 let URL = 'https://storage.googleapis.com/tm-models/QDvGMpQt/';
 
-// const size = 200;
-// const flip = true;
 let model, webcam, ctx, labelContainer, maxPredictions;
-
-// window.addEventListener('load', init);
 
 window.addEventListener('load', landingPageLoad);
 
@@ -22,7 +18,7 @@ function beginTutorial() {
   console.log("Tutorial begining");
 
   document.getElementById('intro-wrapper').style.display = 'none';
-  document.getElementById('tutorial-wrapper').style.display = 'block';
+  document.getElementById('tutorial-wrapper').style.display = 'flex';
 
   // The video element on the page to display the webcam
   var video = document.getElementById('thevideo');
@@ -63,6 +59,9 @@ function beginTutorial() {
 
   draw();
 
+  document.getElementById('start-app').addEventListener('click', init);
+
+
 }
 
 
@@ -70,9 +69,9 @@ async function init() {
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
 
-  document.getElementById('tensorflow').style.display = 'none';
-  document.getElementById('embed-video').style.display = 'none';
-  document.getElementById('inputs').style.display = 'none';
+
+  document.getElementById('tutorial-wrapper').style.display = 'none';
+  document.getElementById('loading-wrapper').style.display = 'block';
 
 
   // load the model and metadata
@@ -123,7 +122,8 @@ async function predict() {
   // console.log(prediction);
 
   if (pose) {
-    document.getElementById('tensorflow').style.display = 'block';
+    document.getElementById('app-wrapper').style.display = 'block';
+    document.getElementById('tensorflow').style.display = 'none';
     document.getElementById('embed-video').style.display = 'block';
     document.getElementById('inputs').style.display = 'flex';
     document.getElementById('loading').style.display = 'none';
@@ -141,22 +141,7 @@ async function predict() {
     blurScreen();
   }
 
-  // finally draw the poses
-  drawPose(pose);
 }
-
-function drawPose(pose) {
-  if (webcam.canvas) {
-    ctx.drawImage(webcam.canvas, 0, 0);
-    // draw the keypoints and skeleton
-    if (pose) {
-      const minPartConfidence = 0.5;
-      tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-      tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-    }
-  }
-}
-
 
 function handleVideoUpdate() {
   //declaring common constant params
