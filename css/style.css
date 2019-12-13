@@ -23,11 +23,15 @@ html, body {
   padding-right: 40px;
 }
 
+.actions{
+  display: inline-block;
+}
+
 .intro-images {
   display: grid;
   margin: 0px 8px 16px 16px;
   width: 40%;
-  grid-template-columns: repeat(2, 220px);
+  grid-template-columns: repeat(2, 240px);
   grid-template-rows: repeat(2, 240px);
   grid-gap: 12px;
   padding-top: 72px;
@@ -43,8 +47,29 @@ html, body {
 
 .item-1 {
   grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.item-2 {
+  grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.item-3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.item-4 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
   grid-row-end: 3;
 }
 
@@ -66,9 +91,20 @@ html, body {
   letter-spacing: 0.04em;
   line-height: 1.6;
 }
+.intro-text p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  padding-top: 48px;
+  padding-bottom: 16px;
+  margin: 0px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  opacity: 0.7;
+}
 
 .intro-text button {
-  margin-top: 56px;
+  margin-top: 16px;
   background-color: #3d5afe;
   color: white;
   padding: 16px 16px 16px 16px;
@@ -80,15 +116,31 @@ html, body {
   border: none;
   border-radius: 3px;
   transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: 0.05s;
   letter-spacing: 0.05em;
+  margin-right: 4px;
 }
 
 .intro-text button:hover {
-  transform: translate(0%, -10%);
+  transform: translate(0%, -3%);
   background-color: #0026ca;
-  padding: 16px 24px 16px 24px;
+  /* padding: 16px 18px 16px 18px; */
   border-radius: 6px;
+}
+
+#begin-tutorial{
+  background-color: transparent;
+  color: #3d5afe;
+  font-weight: 300;
+  padding: 16px 16px 16px 24px;
+  text-align: center;
+  text-decoration: underline;
+  border: none;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  letter-spacing: 0.05em;
+}
+
+#begin-tutorial button:hover {;
+  color: #0026ca;
 }
 
 .tutorial-wrapper {

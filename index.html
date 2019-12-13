@@ -35,12 +35,20 @@
         If you tilt your head or don't sit straight the video blurs out making it
         impossible for you to watch the video unless you sit straight.
       </h4>
-      <button type="button" id="begin-tutorial">View Tutorial</button>
+      <p>Adjust your position to the face marker & begin the experiment</p>
+      <div class="actions">
+      <button type="button" id="start-app" >View Experiment</button>
+      <button type="button" id="begin-tutorial">How it works?</button>
+    </div>
     </div>
 
     <!-- Right side images -->
     <div class="intro-images">
-      <img src="./img/intro/intro.png" class="item-1" alt="Image 1">
+      <!-- <img src="./img/intro/intro.png" class="item-1" alt="Image 1"> -->
+      <img src="./img/tutorial/keypoints.png" class="item-1" alt="Image 1">
+      <img src="./img/intro/intro-2.png" class="item-2" alt="Image 1">
+      <img src="./img/intro/intro-3.png" class="item-3" alt="Image 1">
+      <canvas height="240" width="240" id="thecanvas" class="item-4"></canvas>
     </div>
   </div>
 
@@ -52,19 +60,20 @@
       <ul>
         <li>Using webcam & machine learning, keypoints <sup>[1]</sup> relevant to the face & shoulder are identified.</li>
         <li>The algorithm is trained to identify good <sup>[2]</sup> & bad <sup>[3]</sup> poses, independent of users.</li>
-        <li>When bad poses are identified the screen blurs out. Try adjusting your position to the face marker <sup>[4]</sup> & click button to continue.</li>
+        <li>When bad poses are identified the screen blurs out. Try adjusting your position to the face marker <sup>[4]</sup> & click to continue.</li>
       </ul>
-      <button type="button" id="start-app">View Application</button>
+      <button type="button" id="start-exp">View Experiment</button>
     </div>
 
     <div class="tutorial-images">
       <img src="./img/tutorial/keypoints.png" class="tut-1" alt="Image 1">
       <img src="./img/intro/intro-2.png" class="tut-2" alt="Image 1">
       <img src="./img/intro/intro-3.png" class="tut-3" alt="Image 1">
-      <canvas height="240" width="240" id="thecanvas" class="tut-4"></canvas>
+      <canvas height="240" width="240" id="othercanvas" class="tut-4"></canvas>
     </div>
 
     <video id="thevideo" height="240" width="240" style="display: none;"></video>
+    <video id="othervideo" height="240" width="240" style="display: none;"></video>
 
 
   </div>

@@ -12,14 +12,13 @@ function landingPageLoad() {
   console.log("Well let's begin");
 
   document.getElementById('begin-tutorial').addEventListener('click', beginTutorial);
+
+  videoElementPlay();
+
+  document.getElementById('start-app').addEventListener('click', init);
 }
 
-function beginTutorial() {
-  console.log("Tutorial begining");
-
-  document.getElementById('intro-wrapper').style.display = 'none';
-  document.getElementById('tutorial-wrapper').style.display = 'flex';
-
+function videoElementPlay(){
   // The video element on the page to display the webcam
   var video = document.getElementById('thevideo');
   let constraints = {
@@ -58,9 +57,54 @@ function beginTutorial() {
   };
 
   draw();
+}
 
-  document.getElementById('start-app').addEventListener('click', init);
+function beginTutorial() {
+  console.log("Tutorial begining");
 
+  document.getElementById('intro-wrapper').style.display = 'none';
+  document.getElementById('tutorial-wrapper').style.display = 'flex';
+
+  // The video element on the page to display the webcam
+  var othervideo = document.getElementById('othervideo');
+  let constraints = {
+    audio: false,
+    video: true
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+      // Attach to our video object
+  othervideo.srcObject = stream;
+      // Wait for the stream to load enough to play
+      othervideo.onloadedmetadata = function(e) {
+        othervideo.play();
+      };
+    })
+    .catch(function(err) {
+      alert(err);
+    });
+
+  // Canvas element on the page
+  var othercanvas = document.getElementById('othercanvas');
+  var othercontext = othercanvas.getContext('2d');
+
+  let otherdraw = function() {
+    // Draw the video onto the canvas
+    othercontext.drawImage(othervideo, 0, 0, othervideo.width, othervideo.height);
+
+    let overlayImage = new Image();
+    overlayImage.src = "./img/tutorial/ideal-placement.png";
+
+    othercontext.drawImage(overlayImage, 0, 0);
+
+    // Draw again in 3 seconds
+    setTimeout(otherdraw, 60);
+
+  };
+
+  otherdraw();
+
+  document.getElementById('start-exp').addEventListener('click', init);
 
 }
 
@@ -69,7 +113,7 @@ async function init() {
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
 
-
+  document.getElementById('intro-wrapper').style.display = 'none';
   document.getElementById('tutorial-wrapper').style.display = 'none';
   document.getElementById('loading-wrapper').style.display = 'block';
 
