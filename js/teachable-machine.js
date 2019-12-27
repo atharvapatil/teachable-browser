@@ -138,6 +138,21 @@ async function init() {
   canvas.width = size;
   canvas.height = size;
   ctx = canvas.getContext('2d');
+  // var drawBG = function() {
+  //   // Draw the video onto the canvas
+  //   // ctx.drawImage(video, 0, 0, size, size);
+  //
+  //   var overlayImage = new Image();
+  //   overlayImage.src = "./img/intro/intro-4.png";
+  //
+  //   ctx.drawImage(overlayImage, 0, 0, size, size);
+  //
+  //   // Draw again in 3 seconds
+  //   setTimeout(drawBG, 300);
+  //
+  // };
+  //
+  // drawBG();
   labelContainer = document.getElementById('label-container');
   for (let i = 0; i < maxPredictions; i++) { // and class labels
     labelContainer.appendChild(document.createElement('div'));
