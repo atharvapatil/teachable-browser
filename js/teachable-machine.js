@@ -167,7 +167,7 @@ async function predict() {
 
   if (pose) {
     document.getElementById('app-wrapper').style.display = 'block';
-    document.getElementById('tensorflow').style.display = 'none';
+    document.getElementById('tensorflow').style.display = 'block';
     document.getElementById('embed-video').style.display = 'block';
     document.getElementById('inputs').style.display = 'flex';
     document.getElementById('loading').style.display = 'none';
@@ -215,12 +215,14 @@ function handleVideoUpdate() {
 }
 
 function blurScreen() {
-  document.body.style.filter = 'blur(18px)';
+  // document.body.style.filter = 'blur(18px)';
+  document.getElementById('app-wrapper').style.filter = 'blur(18px)';
   document.body.style.transition = '1.2s';
 }
 
 function noBlur() {
-  document.body.style.filter = 'blur(0px)';
+  // document.body.style.filter = 'blur(0px)';
+  document.getElementById('app-wrapper').style.filter = 'blur(0px)';
 }
 
 function largest(num1, num2, num3) {
