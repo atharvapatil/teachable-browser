@@ -35,7 +35,7 @@
       <div class="header-text">
         <h1>Sit Straight!</h1>
         <p>An alternate youtube player which forces you maintain a good sitting posture while enjoying videos</p>
-        <button type="button" name="button" class="button" onclick="renderTutorialView()">Begin Experiment</button>
+        <button type="button" name="button" class="button" id="begin-tutorial">Begin Experiment</button>
       </div>
       <div class="header-img">
         <img src="./img/intro/work.svg" alt="">
@@ -108,7 +108,7 @@
     <!-- made ends -->
 
     <!-- https://bansal.io/pattern-css#image -->
-    <div class="pattern-dots-xl" style="height: 52px; color: cyan; margin-top:48px; margin-bottom:48px; opacity: 0.5;"></div>
+    <div class="pattern-dots-xl" style="height: 40px; color: cyan; margin-top:48px; margin-bottom:48px; opacity: 0.5;"></div>
 
   </div>
 
@@ -179,15 +179,7 @@
       </div>
     </div>
 
-    <div class="tensorflow" id="tensorflow">
-      <div class="info">
-        <p>Detected posture</p>
-        <p><span>good</span></p>
-        <p><span>bad</span></p>
 
-      </div>
-      <!-- <div id='label-container'></div> -->
-    </div>
 
     <div class="footer">
       <p><a href="https://atharvapatil.github.io/" target="_blank"> Made by Atharva Patil</a></p>
@@ -195,6 +187,16 @@
 
 
 
+  </div>
+
+
+  <div class="tensorflow" id="tensorflow">
+    <div class="info" id="info">
+      <p>Detected posture</p>
+      <p><span id="good">good</span></p>
+      <p><span id="bad">bad</span></p>
+    </div>
+    <!-- <div id='label-container'></div> -->
   </div>
 
 

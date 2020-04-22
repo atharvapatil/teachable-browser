@@ -6,16 +6,10 @@ let URL = 'https://storage.googleapis.com/tm-models/QDvGMpQt/';
 
 let model, webcam, ctx, labelContainer, maxPredictions;
 
-function landingPageLoad() {
-
-  document.getElementById('begin-tutorial').addEventListener('click', beginTutorial);
-
-  videoElementPlay();
-}
-
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+  document.getElementById('begin-tutorial').addEventListener('click', renderTutorialView);
 
 });
 
@@ -184,15 +178,6 @@ async function init() {
   // await webcam.hide();
   window.requestAnimationFrame(loop);
 
-  // append/get elements to the DOM
-  // const canvas = document.getElementById('canvas');
-  // canvas.width = size;
-  // canvas.height = size;
-  // ctx = canvas.getContext('2d');
-  // labelContainer = document.getElementById('label-container');
-  // for (let i = 0; i < maxPredictions; i++) { // and class labels
-  //   labelContainer.appendChild(document.createElement('div'));
-  // }
 }
 
 async function loop(timestamp) {
@@ -208,18 +193,13 @@ async function predict() {
   } = await model.estimatePose(webcam.canvas);
   // Prediction 2: run input through teachable machine classification model
   const prediction = await model.predict(posenetOutput);
-
-  // for (let i = 0; i < 3; i++) {
-  //   const classPrediction = prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
-  //   labelContainer.childNodes[i].innerHTML = classPrediction;
-  // }
-
   // console.log(prediction);
 
   if (pose) {
     document.getElementById('app-wrapper').style.display = 'block';
-    document.getElementById('tensorflow').style.display = 'block';
     document.getElementById('embed-video').style.display = 'block';
+    document.getElementById('tensorflow').style.display = 'block';
+    document.getElementById('info').style.display = 'block';
     document.getElementById('inputs').style.display = 'flex';
     document.querySelector('#loading-wrapper').style.display = 'none';
   }
@@ -230,10 +210,23 @@ async function predict() {
 
   let topResult = await largest(neutral_probablity, left_probablity, right_probablity);
 
+  const goodState = document.querySelector('#good');
+  const badState = document.querySelector('#bad');
+
   if (topResult === 'neutral') {
     noBlur();
+    goodState.style.background = '#A5D6A7';
+    goodState.style.color = '#263238';
+
+    badState.style.background = 'rgba(255, 255, 255, 0.08)';
+    badState.style.color = '#E0E0E0';
   } else if (topResult === 'left' || topResult === 'right') {
     blurScreen();
+    badState.style.background = '#EF9A9A';
+    badState.style.color = '#263238';
+
+    goodState.style.background = 'rgba(255, 255, 255, 0.08)';
+    goodState.style.color = '#E0E0E0';
   }
 
   // drawPose(pose);
