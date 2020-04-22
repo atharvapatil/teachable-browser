@@ -31,7 +31,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
 }
 
-.seperator{
+.seperator {
   height: 120px;
 }
 
@@ -210,7 +210,6 @@ body {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-
 }
 
 .tutorial-item {
@@ -218,20 +217,19 @@ body {
   min-width: 200px;
 }
 
-.tutorial-item img{
+.tutorial-item img {
   width: 200px;
   min-width: 200px;
   padding: 2%;
 }
 
-.tutorial-item canvas{
+.tutorial-item canvas {
   width: 200px;
   height: inherit;
   min-width: 200px;
   padding: 2%;
   border-radius: 8px;
 }
-
 
 /* tutorial page css ends here  */
 /* loading view css begins here */
@@ -253,12 +251,10 @@ body {
   max-width: 380px;
 }
 
-
 .loading {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
-
 }
 
 .loading div {
@@ -294,19 +290,62 @@ body {
 }
 
 /* loading view css ends here */
-
-
 /* app css begins here */
+.youtube-search-wrapper {
+  background: #121212;
+  padding: 12px 0;
+  margin: 0;
+}
 
-#app-wrapper{
+.link-text {
+  display: flex;
+  width: 328px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.link-text input {
+  font-size: 12px;
+  line-height: 112.69%;
+  background: #010101;
+  border: 1px solid #27292D;
+  border-radius: 4px 0 0 4px;
+  width: 288px;
+  color: #FFFFFF;
+  padding: 12px 12px;
+}
+
+.link-text input:focus {
+  border: none;
+  background-color: #1F1F1F;
+}
+
+.search-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-text button {
+  width: 40px;
+  height: 40px;
+  background: #27292D;
+  border-radius: 0 4px 4px 0;
+  border: none;
+  cursor: pointer;
+}
+
+.app-wrapper {
   display: none;
 }
 
 .embed-video {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 16px;
+  padding-top: 24px;
 }
 
 .inputs {
@@ -315,43 +354,14 @@ body {
   padding: 16px;
 }
 
-.inputs button {
-  background-color: tomato;
-  width: 6%;
-  cursor: pointer;
-  border-radius: 0px 2px 2px 0px;
-  border: none;
-}
-
-input {
-  width: 94%;
-  height: 64px;
-  font-size: 20px;
-  padding: 0 16px;
-  background-color: inherit;
-  color: inherit;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: #1F1F1F;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-}
-
-input:focus {
-  /* border: 1px solid red; */
-  border: none;
-  background-color: #1F1F1F;
-}
-
-.footer{
+.footer {
   position: absolute;
   bottom: 0px;
-  right:10px;
+  right: 10px;
   opacity: 0.4;
-
 }
 
-.footer a{
+.footer a {
   text-decoration: underline;
   color: white;
   letter-spacing: 0.03em;
@@ -359,9 +369,36 @@ input:focus {
 }
 
 .tensorflow {
-  display: none;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
   position: fixed;
-  top: 100px;
-  right: 16px;
+  top: 88px;
+  right: 24px;
   z-index: 2;
+}
+
+.info {
+  display: block;
+  text-align: center;
+}
+
+.info p {
+  font-size: 12px;
+  line-height: 129.36%;
+  color: #FFFFFF;
+  opacity: 0.9;
+}
+
+.info span {
+  display: block;
+  width: 200px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #E0E0E0;
+  padding: 8px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }

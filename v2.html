@@ -160,12 +160,17 @@
 
 
   <!-- This contains the youtube embed & search bar -->
-  <div id="app-wrapper">
-    <div class="inputs" id="inputs">
-      <input type="text" name="fname" value="Enter youtube link here" id="youtube-url">
-      <button id="search_button" onclick="handleVideoUpdate()">
-        <img src="./img/search-icon.svg" width="32px" height="inherit" />
-      </button>
+  <div class="app-wrapper" id="app-wrapper">
+
+    <div class="youtube-search-wrapper" id="inputs">
+
+      <div class="link-text">
+        <input type="text" onfocus="this.value=''" name=" fname" value="Enter youtube link here" id="youtube-url">
+        <button id="search_button" onclick="handleVideoUpdate()">
+          <img src="./img/search-icon.svg" width="20px" height="inherit" />
+        </button>
+      </div>
+
     </div>
 
     <div class="embed-video" id="embed-video">
@@ -174,16 +179,25 @@
       </div>
     </div>
 
+    <div class="tensorflow" id="tensorflow">
+      <div class="info">
+        <p>Detected posture</p>
+        <p><span>good</span></p>
+        <p><span>bad</span></p>
+
+      </div>
+      <!-- <div id='label-container'></div> -->
+    </div>
+
+    <div class="footer">
+      <p><a href="https://atharvapatil.github.io/" target="_blank"> Made by Atharva Patil</a></p>
+    </div>
+
+
+
   </div>
 
-  <div class="tensorflow" id="tensorflow">
-    <!-- <div><canvas id='canvas'></canvas></div> -->
-    <div id='label-container'></div>
-  </div>
 
-  <div class="footer">
-    <p><a href="https://atharvapatil.github.io/" target="_blank"> Made by Atharva Patil</a></p>
-  </div>
 
   <script src="js/v2.js"></script>
 </body>
