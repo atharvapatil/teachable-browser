@@ -154,6 +154,10 @@ body {
   min-width: 220px;
 }
 
+.item img {
+  border-radius: 4px;
+}
+
 .item p {
   text-align: center;
   padding-top: 40%;
@@ -236,13 +240,11 @@ body {
 /* tutorial page css ends here  */
 /* loading view css begins here */
 .loading-wrapper {
-  max-width: 1096px;
-  margin-left: auto;
-  margin-right: auto;
   display: none;
   position: absolute;
-  top: 30%;
-  left: 32%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .loading-wrapper p {

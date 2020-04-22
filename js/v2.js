@@ -14,14 +14,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-function renderTutorialView() {
+async function renderTutorialView() {
   const introView = document.querySelector('#intro-wrapper');
   const tutorialView = document.querySelector('#tutorial-wrapper');
 
-  introView.style.display = 'none';
-  tutorialView.style.display = 'flex';
+  introView.style.display = await 'none';
+  tutorialView.style.display = await 'flex';
 
-  videoElementPlay();
+  await videoElementPlay();
 }
 
 function launchApp() {
@@ -112,16 +112,20 @@ function videoElementPlay() {
   const canvas = document.getElementById('canvas');
   const context = canvas.getContext('2d');
 
+  canvas.style.transform = 'rotateY(180deg)';
+
+
   const drawVideo = function() {
     // Draw the video onto the canvas
-    context.drawImage(video, 0, 0, 200, 200);
+    context.drawImage(video, 0, 0, video.width, video.height);
+
 
     const overlayImage = new Image();
     overlayImage.src = "./img/intro/intro-4.png";
-    overlayImage.style.width = '200px';
-    overlayImage.style.height = '200px';
+    overlayImage.style.width = '100%';
+    overlayImage.style.height = 'inherit';
 
-    context.drawImage(overlayImage, 0, 0);
+    context.drawImage(overlayImage, 0, 0, 208, 208);
 
     // Draw again every second
     setTimeout(drawVideo, 60);
