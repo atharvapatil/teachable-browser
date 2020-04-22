@@ -8,6 +8,7 @@
 body {
   background: #212121;
   font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .button {
@@ -20,6 +21,18 @@ body {
   line-height: 150%;
   text-align: center;
   color: #263238;
+  cursor: pointer;
+  transition: 0.3s ease-in-out
+}
+
+.button:hover {
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+.seperator{
+  height: 120px;
 }
 
 .intro-wrapper {
@@ -30,7 +43,7 @@ body {
 
 .navigation {
   margin-top: 44px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -91,6 +104,7 @@ body {
 .info-text {
   width: 50%;
   padding-right: 24px;
+  min-width: 360px;
 }
 
 .info-text h2 {
@@ -106,7 +120,8 @@ body {
   padding-bottom: 24px;
   margin: 0;
   font-size: 16px;
-  line-height: 180%;
+  font-weight: 300;
+  line-height: 200%;
   color: #FFFFFF;
   opacity: 0.85;
 }
@@ -118,23 +133,48 @@ body {
 .info-image {
   width: 50%;
   padding: 24px;
+  min-width: 360px;
 }
 
-.info-image img{
+.info-image img {
   width: 100%;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.item {
+  width: 50%;
+  min-width: 220px;
+}
+
+.item p {
+  text-align: center;
+  padding-top: 40%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+  color: #FFFFFF;
+  opacity: 0.85;
 }
 
 /* tutorial page css begins here  */
 .tutorial-wrapper {
+  padding-top: 56px;
   max-width: 1096px;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
 }
 
 .text-tutorial {
-  width: 60%;
+  width: 58%;
   padding-right: 72px;
 }
 
@@ -158,59 +198,170 @@ body {
 }
 
 .images-tutorial {
-  width: 40%;
+  width: 42%;
 }
 
 .images-tutorial img {
   width: 100%;
 }
+
+.tutorial-flex-display {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+
+}
+
+.tutorial-item {
+  width: 50%;
+  min-width: 200px;
+}
+
+.tutorial-item img{
+  width: 200px;
+  min-width: 200px;
+  padding: 2%;
+}
+
+.tutorial-item canvas{
+  width: 200px;
+  height: inherit;
+  min-width: 200px;
+  padding: 2%;
+  border-radius: 8px;
+}
+
+
 /* tutorial page css ends here  */
-
-
 /* loading view css begins here */
 .loading-wrapper {
   max-width: 1096px;
   margin-left: auto;
   margin-right: auto;
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 32%;
 }
 
-.loading-wrapper p{
+.loading-wrapper p {
   font-size: 24px;
-line-height: 150%;
-text-align: center;
-
-color: #FFFFFF;
+  line-height: 150%;
+  text-align: center;
+  color: #FFFFFF;
+  max-width: 380px;
 }
+
 
 .loading {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
-  /* position: absolute;
-  top: 0;
-  left: calc(50% - 3rem); */
+
 }
 
 .loading div {
-    width: 0.8rem;
-    height: 0.8rem;
-    margin: 2rem 0.3rem;
-    background: #307FE2;
-    border-radius: 50%;
-    animation: 0.6s bounce infinite alternate;
-  }
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 2rem 0.8rem;
+  background: #FD5E53;
+  border-radius: 50%;
+  animation: 0.5s bounce infinite alternate;
+}
 
 .loading div:nth-child(2) {
-  animation-delay: 0.150s;
+  animation-delay: 0.10s;
 }
+
 .loading div:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.loading div:nth-child(4) {
   animation-delay: 0.3s;
+}
+
+.loading div:nth-child(5) {
+  animation-delay: 0.4s;
 }
 
 @keyframes bounce {
   to {
-    opacity: 0.3;
-    transform: translate3d(0, -1rem, 0);
+    opacity: 0.25;
+    transform: translate3d(0, -1.5rem, 0);
   }
 }
+
 /* loading view css ends here */
+
+
+/* app css begins here */
+
+#app-wrapper{
+  display: none;
+}
+
+.embed-video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+}
+
+.inputs {
+  display: flex;
+  margin: 0px;
+  padding: 16px;
+}
+
+.inputs button {
+  background-color: tomato;
+  width: 6%;
+  cursor: pointer;
+  border-radius: 0px 2px 2px 0px;
+  border: none;
+}
+
+input {
+  width: 94%;
+  height: 64px;
+  font-size: 20px;
+  padding: 0 16px;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #1F1F1F;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+input:focus {
+  /* border: 1px solid red; */
+  border: none;
+  background-color: #1F1F1F;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0px;
+  right:10px;
+  opacity: 0.4;
+
+}
+
+.footer a{
+  text-decoration: underline;
+  color: white;
+  letter-spacing: 0.03em;
+  font-size: 12px;
+}
+
+.tensorflow {
+  display: none;
+  position: fixed;
+  top: 100px;
+  right: 16px;
+  z-index: 2;
+}

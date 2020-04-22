@@ -11,20 +11,21 @@
   <!-- more documentation at https://github.com/googlecreativelab/teachablemachine-libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+  <link href="https://unpkg.com/pattern.css" rel="stylesheet">
   <link rel="stylesheet" href="css/v2.css">
 
 </head>
 
 <body>
-  <!-- <script src="js/v2.js"></script> -->
 
-  <div class="intro-wrapper">
+
+  <div class="intro-wrapper" id="intro-wrapper">
     <!-- Top navigation begins -->
     <nav>
       <div class="navigation">
-        <span> <a href="#">how it works</a> </span>
-        <span> <a href="#">privacy</a> </span>
-        <span> <a href="#">design processs</a> </span>
+        <span> <a href="#how-it-works">how it works</a> </span>
+        <span> <a href="#privacy">privacy</a> </span>
+        <span> <a href="#design">design processs</a> </span>
       </div>
     </nav>
     <!-- Top navigation ends -->
@@ -34,7 +35,7 @@
       <div class="header-text">
         <h1>Sit Straight!</h1>
         <p>An alternate youtube player which forces you maintain a good sitting posture while enjoying videos</p>
-        <button type="button" name="button" class="button">Begin Experiment</button>
+        <button type="button" name="button" class="button" onclick="renderTutorialView()">Begin Experiment</button>
       </div>
       <div class="header-img">
         <img src="./img/intro/work.svg" alt="">
@@ -42,34 +43,57 @@
     </div>
     <!-- Top introduction ends -->
 
+    <div class="seperator"></div>
+
     <!-- How it works begins -->
-    <div class="info-wrapper">
+    <div class="info-wrapper" id="how-it-works">
       <div class="info-text">
         <h2>How it works?</h2>
         <p>A machine learning algorithm has been trained to know what good & bad sitting postures look like. Using the device webcam postures are tracked in a 2D space to see if users are slouching or sitting up right.</p>
         <p>As regular webcams can’t detect depth the algorithm is limited to tracking users postures in a 2D plane. If you move closer or farther from the screen the app won’t give accurate results.</p>
       </div>
       <div class="info-image">
-        <img src="./img/intro/temp.png" alt="">
+        <div class="flex-wrapper">
+          <div class="item">
+            <img src="./img/intro/666.png" alt="">
+          </div>
+          <div class="item">
+            <p>good postures</p>
+          </div>
+          <div class="item">
+            <p>bad postures</p>
+          </div>
+          <div class="item">
+            <img src="./img/intro/666.png" alt="">
+          </div>
+        </div>
+
+
       </div>
     </div>
     <!-- how it works ends -->
 
+    <div class="seperator"></div>
+
+
     <!-- privacy begins -->
-    <div class="info-wrapper">
+    <div class="info-wrapper" id="privacy">
       <div class="info-text">
         <h2>Privacy</h2>
         <p>As user input the app asks users for a constant camera access which let’s users to potentially give up a lot of their data. This concern which was addresed while designing this app.</p>
         <p>The algorithm runs locally on the browser & none of your data is tracked. The algorithm in question can identify different body parts but it doesn’t know if you are indoors or outdoors or sitting on your bed.</p>
       </div>
       <div class="info-image">
-        <img src="./img/intro/temp.png" alt="">
+        <img src="./img/intro/666.png" alt="">
       </div>
     </div>
     <!-- privacy ends -->
 
+    <div class="seperator"></div>
+
+
     <!-- made begins -->
-    <div class="info-wrapper">
+    <div class="info-wrapper" id="design">
       <div class="info-text">
         <h2>How it was made</h2>
         <p>Hi <a href="http://atharvapatil.github.io/" target="_blank">I’m Atharva</a>, the creator behind this web app. ML backed classification apps are a black box impossible to decipher. In an attempt to make the app features & limitations more
@@ -78,15 +102,18 @@
         <button type="button" name="button" class="button">View case study</button>
       </div>
       <div class="info-image">
-        <img src="./img/intro/temp.png" alt="">
+        <img src="./img/intro/666.png" alt="">
       </div>
     </div>
     <!-- made ends -->
 
+    <!-- https://bansal.io/pattern-css#image -->
+    <div class="pattern-dots-xl" style="height: 52px; color: cyan; margin-top:48px; margin-bottom:48px; opacity: 0.5;"></div>
+
   </div>
 
   <!-- tutorial section begins -->
-  <div class="tutorial-wrapper">
+  <div class="tutorial-wrapper" id="tutorial-wrapper">
 
     <div class="text-tutorial">
       <h2>How it works</h2>
@@ -94,20 +121,36 @@
       <p>The Algorithm has been taught that sitting in an upright positins is a good sitting posture. </p>
       <p>It also has been taught about bad sitting postures. Such as tilting your head sideways, resting your head on your hand, etc.</p>
       <p>If the algorithm thinks you have a bad siting posture it blurs the screen out. Adjust your position in the face marker & continue.</p>
-      <button type="button" name="button" class="button">Launch Application</button>
+      <button type="button" name="button" class="button" onclick="init()">Launch Application</button>
 
     </div>
     <div class="images-tutorial">
-      <img src="./img/intro/temp.png" alt="">
+      <div class="tutorial-flex-display">
+        <div class="tutorial-item">
+          <img src="./img/intro/68.png" alt="">
+        </div>
+        <div class="tutorial-item">
+          <img src="./img/intro/69.png" alt="">
+        </div>
+        <div class="tutorial-item">
+          <img src="./img/intro/69.png" alt="">
+        </div>
+        <div class="tutorial-item">
+          <canvas height="200" width="200" id="canvas"></canvas>
+        </div>
+      </div>
     </div>
+    <video id="video" height="200" width="200" style="display: none;"></video>
 
   </div>
   <!-- tutorial section ends -->
 
 
   <!-- loading state begins -->
-  <div class="loading-wrapper">
+  <div class="loading-wrapper" id="loading-wrapper">
     <div class="loading">
+      <div></div>
+      <div></div>
       <div></div>
       <div></div>
       <div></div>
@@ -116,70 +159,8 @@
   </div>
 
 
-
-  <!-- This is the site introduction page div -->
-  <!-- <div id="intro-wrapper" class="intro-wrapper"> -->
-
-  <!-- Letft side text -->
-  <!-- <div class="intro-text">
-      <h1>Sit straight</h1>
-      <h4>An teachable machine experiment which forces you to sit straight while watching
-        videos.
-        <br><br>
-        If you tilt your head or don't sit straight the video blurs out making it
-        impossible for you to watch the video unless you sit straight.
-      </h4>
-      <p>Adjust your position to the face marker & begin the experiment</p>
-      <div class="actions">
-        <button type="button" id="start-app">View Experiment</button>
-        <button type="button" id="begin-tutorial">How it works?</button>
-      </div>
-    </div> -->
-
-  <!-- Right side images -->
-  <!-- <div class="intro-images"> -->
-  <!-- <img src="./img/intro/intro.png" class="item-1" alt="Image 1"> -->
-  <!-- <img src="./img/intro/intro-1.png" class="item-1" alt="Image 1">
-      <img src="./img/intro/intro-2.png" class="item-2" alt="Image 1">
-      <img src="./img/intro/intro-3.png" class="item-3" alt="Image 1">
-      <canvas height="240" width="240" id="thecanvas" class="item-4"></canvas>
-    </div>
-  </div> -->
-
-  <!-- This wrapper contain all the tutorial explainers -->
-  <!-- <div id="tutorial-wrapper">
-
-    <div class="tutorial-text">
-      <h1>How it works ...</h1>
-      <ul>
-        <li>Using webcam & machine learning, keypoints <sup>[1]</sup> relevant to the face & shoulder are identified.</li>
-        <li>The algorithm is trained to identify good <sup>[2]</sup> & bad <sup>[3]</sup> poses, independent of users.</li>
-        <li>When bad poses are identified the screen blurs out. Try adjusting your position to the face marker <sup>[4]</sup> & click to continue.</li>
-      </ul>
-      <button type="button" id="start-exp">View Experiment</button>
-    </div>
-
-    <div class="tutorial-images">
-      <img src="./img/tutorial/keypoints.png" class="tut-1" alt="Image 1">
-      <img src="./img/tutorial/good.png" class="tut-2" alt="Image 1">
-      <img src="./img/tutorial/bad.png" class="tut-3" alt="Image 1">
-      <canvas height="240" width="240" id="othercanvas" class="tut-4"></canvas>
-    </div>
-
-    <video id="thevideo" height="240" width="240" style="display: none;"></video>
-    <video id="othervideo" height="240" width="240" style="display: none;"></video>
-
-
-  </div> -->
-
-  <!-- This contains loading state graphs for when the model is loading -->
-  <!-- <div id="loading-wrapper">
-    <div class="loading" id="loading">Please wait till model loads</div>
-  </div> -->
-
-
   <!-- This contains the youtube embed & search bar -->
-  <!-- <div id="app-wrapper">
+  <div id="app-wrapper">
     <div class="inputs" id="inputs">
       <input type="text" name="fname" value="Enter youtube link here" id="youtube-url">
       <button id="search_button" onclick="handleVideoUpdate()">
@@ -196,15 +177,15 @@
   </div>
 
   <div class="tensorflow" id="tensorflow">
-    <div><canvas id='canvas'></canvas></div>
+    <!-- <div><canvas id='canvas'></canvas></div> -->
     <div id='label-container'></div>
   </div>
 
   <div class="footer">
     <p><a href="https://atharvapatil.github.io/" target="_blank"> Made by Atharva Patil</a></p>
-  </div> -->
+  </div>
 
-
+  <script src="js/v2.js"></script>
 </body>
 
 </html>
