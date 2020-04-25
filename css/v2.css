@@ -5,10 +5,14 @@
   --header-color: #AED581;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 body {
   background: #212121;
   font-family: 'Inter', sans-serif;
-  scroll-behavior: smooth;
 }
 
 .button {
@@ -101,6 +105,7 @@ body {
 .info-wrapper {
   display: flex;
   align-items: center;
+  height: 100vh;
 }
 
 .info-text {
