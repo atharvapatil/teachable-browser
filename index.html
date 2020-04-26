@@ -7,6 +7,7 @@
   <title>Sit Straight, an teachable machine experiment</title>
   <meta name="description" content="Teachable Browser">
   <meta name="author" content="Atharva Patil">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./img/favicon.png">
   <!-- more documentation at https://github.com/googlecreativelab/teachablemachine-libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
@@ -34,7 +35,8 @@
     <div class="intro-header">
       <div class="header-text">
         <h1>Sit Straight!</h1>
-        <p>An alternate youtube player which forces you maintain a good sitting posture while enjoying videos</p>
+        <p>A posture classifier that blurs out Youtube videos if users don't sit straight.
+          Made to make users conscious of bad postures they take when there is no active interaction with the app. </p>
         <button type="button" name="button" class="button" id="begin-tutorial">Begin Experiment</button>
       </div>
       <div class="header-img">
@@ -122,7 +124,7 @@
       <p>Using your webcam feed the algorithm identifies different key points on your body.</p>
       <p>The Algorithm has been taught that sitting in an upright position is a good sitting posture.</p>
       <p>It also has been taught about bad sitting postures. Such as tilting your head sideways, resting your head on your hand, etc.</p>
-      <p>If the algorithm thinks you have a bad sitting posture it blurs the screen out. Adjust your position in the face marker & continue.</p>
+      <p>If the algorithm thinks you have a bad sitting posture it blurs the screen out. Adjust your position in the <span style="background: #FEB72B; color: #000; padding: 2px; border-radius: 2px;">face marker</span> & continue.</p>
       <button type="button" name="button" class="button" onclick="init()">Launch Application</button>
 
     </div>

@@ -121,7 +121,7 @@ function videoElementPlay() {
 
 
     const overlayImage = new Image();
-    overlayImage.src = "./img/intro/intro-4.png";
+    overlayImage.src = "./img/intro/intro-5.png";
     overlayImage.style.width = '100%';
     overlayImage.style.height = 'inherit';
 

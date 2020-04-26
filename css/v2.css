@@ -75,7 +75,7 @@ body {
 
 .header-text h1 {
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 48px;
   line-height: 124.6%;
   color: #FFF7F7;
@@ -84,7 +84,7 @@ body {
 .header-text p {
   font-weight: 300;
   margin: 16px 0 48px 0;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 150%;
   color: #FFFFFF;
   opacity: 0.8;
@@ -179,7 +179,7 @@ body {
   max-width: 1096px;
   margin-left: auto;
   margin-right: auto;
-  /* display: flex; */
+  height: 100vh;
   display: none;
   align-items: center;
 }
